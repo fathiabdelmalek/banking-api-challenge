@@ -3,9 +3,12 @@ package com.imfathi.bankingapichallenge.models;
 import jakarta.persistence.*;
 
 @Entity
-public class Customer {
+public record Account(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        long id;
-        String name;
+        Long id,
+        Double balance,
+        @ManyToOne
+        Customer customer
+) {
 }

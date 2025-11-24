@@ -44,6 +44,10 @@ public class AccountService {
 
     @Transactional
     public void deleteAccount(Long id) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found: " + id));
+        if (account.getBalance() > 0)
+            throw new IllegalStateException("Cannot delete account with balance");
         accountRepository.deleteById(id);
     }
 

@@ -47,6 +47,12 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
+    public AccountDto.BalanceResponse getAccountBalance(Long id) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found: " + id));
+        return AccountDto.BalanceResponse.builder().balance(account.getBalance()).build();
+    }
+
     private AccountDto.Response toResponse(Account account) {
         return AccountDto.Response.builder()
                 .id(account.getId())

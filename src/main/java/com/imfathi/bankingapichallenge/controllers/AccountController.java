@@ -43,4 +43,9 @@ public class AccountController {
     public void deleteAccount(@PathVariable Long id) {
         accountService.deleteAccount(id);
     }
+
+    @GetMapping("/accounts/{id}/balance")
+    public ResponseEntity<AccountDto.BalanceResponse> getAccountBalance(@PathVariable Long id) {
+        return ResponseEntity.ok(accountService.getAccountBalance(id));
+    }
 }

@@ -24,4 +24,12 @@ public class AccountDto {
         private LocalDateTime createdAt;
         private Long customerId;
     }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BalanceResponse {
+        private Double balance;
+    }
 }

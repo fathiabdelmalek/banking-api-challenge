@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Sun Nov 23 15:14:43 CET 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-019a-b111-2a1a-0000004ed920 
+on database directory memory:/home/fathi/dev/experiments/banking-api-challenge/37ec5be4-668f-44cc-bfd4-313794d3e457 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48 
+Loaded from file:/home/fathi/.gradle/caches/modules-2/files-2.1/org.apache.derby/derby/10.16.1.1/f9ca2054b3e33ec3f3f19df4a7490352d82de54a/derby-10.16.1.1.jar
+java.vendor=Red Hat, Inc.
+java.runtime.version=21.0.9+10
+user.dir=/home/fathi/dev/experiments/banking-api-challenge
+os.name=Linux
+os.arch=amd64
+os.version=6.17.8-200.fc42.x86_64
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Nov 23 15:16:45 CET 2025:
+Shutting down instance a816c00e-019a-b111-2a1a-0000004ed920 on database directory memory:/home/fathi/dev/experiments/banking-api-challenge/37ec5be4-668f-44cc-bfd4-313794d3e457 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48 

@@ -1,11 +1,10 @@
 package com.imfathi.bankingapichallenge.repositories;
 
+import com.imfathi.bankingapichallenge.models.entities.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
-
-import com.imfathi.bankingapichallenge.models.Account;
-
-public interface AccountRepository extends CrudRepository<Account, Long> {
-    public List<Account> findAllByCustomerId(long id);
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    public List<Account> findAllByCustomerId(Long id);
 }

@@ -1,31 +1,58 @@
 package com.imfathi.bankingapichallenge.services;
 
-import java.util.List;
-
+import com.imfathi.bankingapichallenge.exceptions.ResourceNotFoundException;
+import com.imfathi.bankingapichallenge.models.dto.AccountDto;
+import com.imfathi.bankingapichallenge.models.entities.Account;
+import com.imfathi.bankingapichallenge.repositories.AccountRepository;
+import com.imfathi.bankingapichallenge.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.imfathi.bankingapichallenge.models.Account;
-import com.imfathi.bankingapichallenge.repositories.AccountRepository;
+import java.util.List;
 
 @Service
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
-    public List<com.imfathi.bankingapichallenge.models.Account> getAllAccounts(long customerId) {
-        return (List<Account>) accountRepository.findAllByCustomerId(customerId);
+    public List<AccountDto.Response> getAllCustomerAccounts(Long customerId) {
+        List<Account> accounts = accountRepository.findAllByCustomerId(customerId);
+        return accounts.stream().map(this::toResponse).toList();
     }
 
-    public Account getAccountById(Long id) {
-        return accountRepository.findById(id).orElse(null);
+    public AccountDto.Response getAccountById(Long id) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found: " + id));
+        return toResponse(account);
+
     }
 
-    public Account saveAccount(Account account) {
-        return accountRepository.save(account);
+    @Transactional
+    public AccountDto.Response saveAccount(AccountDto.CreateAccount request) {
+        Account account = accountRepository.save(
+                Account.builder()
+                        .balance(request.getBalance())
+                        .customer(customerRepository.findById(request.getCustomerId())
+                                .orElseThrow(
+                                        () -> new ResourceNotFoundException("Customer not found: " + request.getCustomerId())))
+                        .build());
+        return toResponse(account);
     }
 
+    @Transactional
     public void deleteAccount(Long id) {
         accountRepository.deleteById(id);
+    }
+
+    private AccountDto.Response toResponse(Account account) {
+        return AccountDto.Response.builder()
+                .id(account.getId())
+                .balance(account.getBalance())
+                .createdAt(account.getCreatedAt())
+                .customerId(account.getCustomer().getId())
+                .build();
     }
 }

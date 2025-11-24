@@ -1,8 +1,8 @@
 package com.imfathi.bankingapichallenge.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.imfathi.bankingapichallenge.models.Customer;
+import com.imfathi.bankingapichallenge.models.entities.Customer;
 
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }

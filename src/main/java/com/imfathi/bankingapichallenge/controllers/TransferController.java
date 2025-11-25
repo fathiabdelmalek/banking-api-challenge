@@ -67,8 +67,8 @@ public class TransferController {
 
     @PostMapping("/transfers/accounts/{accountId}")
     @Operation(summary = "Create transfer", description = "Create a new transfer from an account to another account")
-    public ResponseEntity<TransferDto.Response> createTransfer(@PathVariable Long accountId, @Valid @RequestBody TransferDto.CreateRequest request) {
-        TransferDto.Response response = transferService.createTransfer(request, accountId);
+    public ResponseEntity<TransferDto.Response> createTransfer(@PathVariable Long accountId, @Valid @RequestBody TransferDto.CreateTransfer request) {
+        TransferDto.Response response = transferService.performTransfer(request, accountId);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

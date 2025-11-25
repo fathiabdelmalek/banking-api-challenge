@@ -11,7 +11,7 @@ public class TransferDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CreateRequest {
+    public static class CreateTransfer {
         @NotNull(message = "Transfer amount is required")
         @DecimalMin(value = "1000.0", message = "Transfer amount must be at least 1000.0")
         public Double amount;

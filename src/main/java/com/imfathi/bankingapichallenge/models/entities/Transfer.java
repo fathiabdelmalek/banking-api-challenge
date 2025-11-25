@@ -18,13 +18,15 @@ public class Transfer {
     private Long id;
     @Column(nullable = false)
     private Double amount;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Account fromAccount;
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "from_account_id", nullable = false)
+    private Account fromAccount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "to_account_id", nullable = false)
     private Account toAccount;
 
     @PrePersist

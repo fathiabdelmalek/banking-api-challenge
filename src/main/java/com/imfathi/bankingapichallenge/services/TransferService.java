@@ -48,10 +48,10 @@ public class TransferService {
     }
 
     @Transactional
-    public TransferDto.Response createTransfer(TransferDto.CreateRequest request) {
-        Account fromAccount = accountRepository.findById(request.getFromAccountId())
+    public TransferDto.Response createTransfer(TransferDto.CreateRequest request, Long accountId) {
+        Account fromAccount = accountRepository.findById(accountId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Source account not found: " + request.getFromAccountId()));
+                        "Source account not found: " + accountId));
         Account toAccount = accountRepository.findById(request.getToAccountId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Destination account not found: " + request.getToAccountId()));

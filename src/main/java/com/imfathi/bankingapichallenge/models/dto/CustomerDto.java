@@ -1,5 +1,6 @@
 package com.imfathi.bankingapichallenge.models.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ public class CustomerDto {
     @AllArgsConstructor
     public static class CreateCustomer {
         public Long id;
+        @NotNull(message = "Customer name is required")
         public String name;
     }
 

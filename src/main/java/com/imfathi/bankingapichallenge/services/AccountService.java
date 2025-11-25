@@ -31,13 +31,13 @@ public class AccountService {
     }
 
     @Transactional
-    public AccountDto.Response saveAccount(AccountDto.CreateAccount request) {
+    public AccountDto.Response saveAccount(AccountDto.CreateAccount request, Long customerId) {
         Account account = accountRepository.save(
                 Account.builder()
                         .balance(request.getBalance())
-                        .customer(customerRepository.findById(request.getCustomerId())
+                        .customer(customerRepository.findById(customerId)
                                 .orElseThrow(
-                                        () -> new ResourceNotFoundException("Customer not found: " + request.getCustomerId())))
+                                        () -> new ResourceNotFoundException("Customer not found: " + customerId)))
                         .build());
         return toResponse(account);
     }

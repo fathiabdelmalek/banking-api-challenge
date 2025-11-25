@@ -1,5 +1,6 @@
 package com.imfathi.bankingapichallenge.models.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,8 +11,8 @@ public class AccountDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class CreateAccount {
+        @NotNull(message = "You must provide an initial deposit")
         public Double balance;
-        public Long customerId;
     }
 
     @Data

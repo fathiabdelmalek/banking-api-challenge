@@ -19,6 +19,7 @@ public class Account {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @PrePersist

@@ -75,7 +75,6 @@ And they are given the next account balances:
 - ID 5: 600000.00 for Customer 1
 
 ## Notes
-- The application diagrams are in the `diagrams.mdj` file (You can open it using StarUML).
 - I have designed the application to be RESTful.
 - The application uses a Postgres database on a docker container.
 - The application is fully containerized (You can run it using Docker Compose).

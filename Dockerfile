@@ -1,8 +1,7 @@
-LABEL authors="Fathi Abdelmalek"
 FROM eclipse-temurin:21-jdk-jammy AS builder
 WORKDIR /app
 COPY gradlew .
-COPY .gradle gradle
+COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 COPY src src

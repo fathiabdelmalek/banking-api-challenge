@@ -38,17 +38,10 @@ public class AccountController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/customers/{customerId}/accounts/{id}")
-    @Operation(summary = "Update account", description = "Update account by id")
-    public ResponseEntity<AccountDto.Response> updateAccount(@PathVariable Long customerId, @Valid @RequestBody AccountDto.CreateAccount request) {
-        AccountDto.Response response = accountService.saveAccount(request, customerId);
-        return ResponseEntity.ok(response);
-    }
-
     @DeleteMapping("/customers/{customerId}/accounts/{id}")
     @Operation(summary = "Delete account", description = "Delete account by id")
-    public void deleteAccount(@PathVariable Long id) {
-        accountService.deleteAccount(id);
+    public void closeAccount(@PathVariable Long id) {
+        accountService.closeAccount(id);
     }
 
     @GetMapping("/customers/{customerId}/accounts/{id}/balance")
